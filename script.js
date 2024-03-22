@@ -1,7 +1,7 @@
 // init
 let level = 0;
 const keyTable = ["w", "e", "s", "d"];
-let lastKey = "";
+//let lastKey = "";
 let inputStream = [];
 let simonIDs = [];
 let simonKeys = [];
@@ -21,7 +21,7 @@ let deathScreen = () => {
   }, 150);
 
   level = 0;
-  lastKey = "";
+  //lastKey = "";
   inputStream = [];
   simonIDs = [];
   simonKeys = [];
@@ -29,6 +29,7 @@ let deathScreen = () => {
   $("h1#level-title").html(
     'Press <span id="start-button">Space</span> to Start'
   );
+  addStartButtonListener();
 };
 
 //✅ next rnd num & show it
@@ -113,6 +114,7 @@ $("div.btn").click((event) => {
 
 // ❌ depricated jquery for tap I think
 $("div.btn").on("tap", (event) => {
+  console.log(event);
   inputHandler(event, true);
 });
 
@@ -133,10 +135,13 @@ $(document).keydown((event) => {
   }
 });
 
-$('span[type="button"]').click(() => {
-  start();
-});
+let addStartButtonListener = () => {
+  $("span#start-button").click(() => {
+    start();
+  });
 
-$('span[type="button"]').on("tap", () => {
-  start();
-});
+  $("span#start-button").on("tap", () => {
+    start();
+  });
+};
+addStartButtonListener();
